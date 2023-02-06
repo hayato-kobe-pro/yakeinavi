@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function test() {
+    navigator.geolocation.getCurrentPosition(test2);
+}
+
+function test2(position) {
+    alert(geo_text);
+}
+window.onload = onLoad;
+function onLoad() {
+    test()
+}
+</script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <img src="./img.png" alt="" width="350px" style="margin-top: 40px;">
+        <div>
+            <audio controls="" src="https://windy-vis.com/data/mp3fl/Albinoni_Adagio.mp3" style="width: 60%; margin-top: 40px;"><a href="https://windy-vis.com/data/mp3fl/Albinoni_Adagio.mp3">&nbsp;Download audio&nbsp;</a></audio>
+        </div>
+    </div>
+    
+</body>
+</html>
