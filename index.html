@@ -1,27 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 <meta charset="utf-8">
+<title>5-9 星がキラキラ</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+</head>
+<body style="margin: 0;">
+<div id="particles-js"></div>
+<div id="wrapper">
+    <div style="text-align: center;">
+        <h1>地域限定コンテンツ</h1>
+        <div style="background: #fafafa; height: 100px; width: 80%; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center;" >
+            <p id="text1" style="color: #020E34; margin:0;">位置情報読み込み中</p>
+            <p id="text2" style="color: #020E34; margin:0;">少々お待ちください・・・</p>
+        </div>
+        <img src="./img.png" alt="" width="80%" style="margin-top: 40px;">
+        <div style="margin-top: 40px;">
+            <audio controls="" src="./audio.mp3"></audio>
+        </div>
+    </div>
+<!--/wrapper--></div>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/5-9/js/5-9.js"></script>
+</body>
+<style>
+
+/*========= レイアウトのためのCSS ===============*/
+
+#wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
+  color: #fff;
+}
+
+a{
+  color: #fff;
+}
+
+/*========= particle js を描画するエリア設定 ===============*/
+
+html,body{
+  height: 100%;/*高さを100%にして描画エリアをとる*/
+}
+
+#particles-js{ 
+  position:fixed;/*描画固定*/
+  z-index:-1;/*描画を一番下に*/
+  width: 100vw;
+  height: 100vh;
+  background-color:#020E34;/*背景色*/
+}
+
+#wrapper{
+  position: relative;/*描画を#particles-jsよりも上にするためposition:relative;を指定*/
+  z-index: 1;/*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
+  width:100%;
+  height: 100%;
+}
+</style>
 <script>
 function test() {
     navigator.geolocation.getCurrentPosition(test2);
 }
 
 function test2(position) {
-    alert(geo_text);
+    var geo_text = "緯度:" + position.coords.latitude + "\n";
+    let text1 = document.getElementById('text1');
+    text1.innerHTML = geo_text; 
+
+    let geo_text2 = "経度:" + position.coords.longitude + "\n";
+    let text2 = document.getElementById('text2');
+    text2.innerHTML = geo_text2; 
 }
 window.onload = onLoad;
-function onLoad() {
-    test()
+    function onLoad() {
+        test()
 }
+    particlesJS("particles-js", {
+  "particles":{
+    "number":{
+      "value":346,//この数値を変更すると星の数が増減できる
+      "density":{
+        "enable":true,
+        "value_area":800
+      }
+    },
+    "color":{
+      "value":"#ffffff"
+    },
+    "shape":{
+      "type":"circle",//形状はcircleを指定
+      "stroke":{
+        "width":0
+      },
+      },
+    "opacity":{
+      "value":1,//シェイプの透明度
+      "random":true,//シェイプの透明度をランダムにする
+      "anim":{
+        "enable":true,//シェイプの透明度をアニメーションさせる
+        "speed":3,//シェイプの透明度をアニメーションさせる
+        "opacity_min":0,//透明度の最小値０
+        "sync":false//全てを同時にアニメーションさせない
+      }
+    },
+    "size":{
+      "value":2,
+      "random":true,
+      "anim":{
+        "enable":false,
+        "speed":4,
+        "size_min":0.3,
+        "sync":false
+      }
+    },
+    "line_linked":{
+      "enable":false,
+    },
+    "move":{
+      "enable":true,
+      "speed":120,//この数値を小さくするとゆっくりな動きになる
+    "direction":"none",//方向指定なし
+    "random":true,//動きはランダムに
+    "straight":true,//動きをとどめる
+      "out_mode":"out",
+      "bounce":false,
+      "attract":{
+        "enable":false,
+        "rotateX":600,
+        "rotateY":600
+      }
+    }
+  },
+  "interactivity":{
+    "detect_on":"canvas",
+    "events":{
+      "onhover":{
+        "enable":false,
+      },
+      "onclick":{
+        "enable":false,
+      },
+      "resize":true
+    }
+  },
+  "retina_detect":true
+});
 </script>
-</head>
-<body>
-    <div style="text-align: center;">
-        <img src="./img.png" alt="" width="720px" style="margin-top: 40px;">
-        <div style="margin-top: 40px;">
-            <audio controls="" src="./audio.mp3"></audio>
-        </div>
-    </div>
-</body>
 </html>
