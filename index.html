@@ -69,10 +69,10 @@ function test() {
 function test2(position) {
     var geo_text = "緯度:" + position.coords.latitude + "\n";
     let text1 = document.getElementById('text1');
-    text1.innerHTML = geo_text; 
+    text1.innerHTML = geo_text.split(".")[0]; 
 
     let geo_text2 = "経度:" + position.coords.longitude + "\n";
-    let text2 = document.getElementById('text2');
+    let text2 = document.getElementById('text2').split(".")[0];
     text2.innerHTML = geo_text2; 
 }
 window.onload = onLoad;
